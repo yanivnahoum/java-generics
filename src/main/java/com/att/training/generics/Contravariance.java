@@ -45,7 +45,7 @@ class Contravariance {
         Dog max = iterator.next();
         while (iterator.hasNext()) {
             Dog next = iterator.next();
-            if (comparator.compare(max, next) > 0) {
+            if (comparator.compare(next, max) > 0) {
                 max = next;
             }
         }
