@@ -1,5 +1,6 @@
 package com.att.training.generics;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -33,7 +34,8 @@ class UnboundedWildcards {
         //stringList = anyList;      // error
     }
 
-    static class Collections {
+    @Nested
+    class Collections {
 
         // Before Java 1.5, we only had raw types (like parameter collection)
         static String toStringRaw(Collection collection) {
@@ -125,7 +127,7 @@ class UnboundedWildcards {
         }
 
         static String toStringFixed(Collection<?> collection) {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             for (Object o : collection) {
                 builder.append(o);
             }

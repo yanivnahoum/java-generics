@@ -4,6 +4,9 @@ plugins {
     java
 }
 
+group = "com.att.training.generics"
+version = "0.0.1-SNAPSHOT"
+
 repositories {
     mavenCentral()
 }
@@ -17,14 +20,16 @@ sourceSets {
 }
 
 dependencies {
-    implementation("org.junit.jupiter:junit-jupiter:5.7.2")
-    implementation("org.assertj:assertj-core:3.20.2")
+    val junitJupiter = "5.10.3"
+    val assertj = "3.26.3"
+    implementation("org.junit.jupiter:junit-jupiter:$junitJupiter")
+    implementation("org.assertj:assertj-core:$assertj")
 }
 
 tasks {
     withType<JavaCompile>().configureEach {
         options.apply {
-            release.set(11)
+            release.set(21)
             compilerArgs = listOf("-Xlint:all")
         }
     }
