@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class WildcardsVsTypeParameters {
 
-    class Equal {
+    static class Equal {
         // We can declare the method as a non-generic method using wildcard parameterized types as argument and return types.
         private void reverse(List<?> list) {
             // ...
@@ -29,7 +29,7 @@ class WildcardsVsTypeParameters {
      * There is nothing in the signature or the implementation of the  reverse method that indicates that "what goes in does come out".
      * In other words, the wildcard signature does not reflect our intent correctly.
      */
-    class Different {
+    static class Different {
 
         private List<?> reverse(List<?> list) {
             return null;
@@ -45,6 +45,7 @@ class WildcardsVsTypeParameters {
         list.add(obj);
     }
 
+
     @Test
     void testAddToList() {
         List<Number> list = new ArrayList<>();
@@ -59,4 +60,18 @@ class WildcardsVsTypeParameters {
     // static <T, U super T> void addToList(List<U> list, T obj) {
 
     // We need to make sure that T can be assigned to U....
+
+    static <T, U extends T> void addToList2(List<T> list, U obj) {
+        // T is the most derived type possible here, so it can definitely be added to the list
+        list.add(obj);
+    }
+
+    @Test
+    void testAddToList2() {
+        List<Number> list = new ArrayList<>();
+        addToList2(list, 15.75);
+        addToList2(list, 2L);
+
+        assertThat(list).containsExactly(15.75, 2L);
+    }
 }

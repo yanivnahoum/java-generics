@@ -96,7 +96,7 @@ class BoundedWildcards {
         //box.put("xyz"); // error
         box.put(null); // ok
 
-        //String s = box.take(); // error could be any box at alls
+        //String s = box.take(); // error could be any box at all
         Object o = box.take(); // ok
 
         //boolean equal = box.equalTo(box); // error

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Run this test class and make sure you see a message in the console.
- * Intellij: Ctrl+Shift+F10 (Win) / Ctrl+Shift+R,Ctrl+Shift+D (Mac)
+ * Intellij: Ctrl+Shift+F10 (Win) / Ctrl+Shift+R (Mac)
  * Eclipse: Alt+Shift+X,T
  */
 class HelloGenerics {
