@@ -9,8 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class Numbers {
 
-    // Relax the restriction on the generic type of list numbers so that test givenListOfIntegers_shouldReturnSum()
-    // will be able to pass in a List<Integer> and the test will pass
+    /**
+     * Relax the restriction on the generic type of list numbers so that test givenListOfIntegers_shouldReturnSum()
+     * will be able to pass in a List<Integer> and the test will pass
+     */
     static double sum(List<Double> numbers) {
         double sum = 0.0;
         for (Double value : numbers)
@@ -28,7 +30,9 @@ class NumbersTest {
         assertThat(result).isEqualTo(6.9);
     }
 
-    // After fixing method Numbers.sum(), uncomment the commented lines here and make sure the test passes
+    /**
+     * After fixing method Numbers.sum(), uncomment the commented lines here and make sure the test passes
+     */
     @Test
     void givenListOfIntegers_shouldReturnSum() {
         List<Integer> numbers = List.of(1, 2, 3);

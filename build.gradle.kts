@@ -1,6 +1,4 @@
-import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
-import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
-import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 
 plugins {
     java
@@ -19,8 +17,8 @@ sourceSets {
 }
 
 dependencies {
-    implementation("org.junit.jupiter:junit-jupiter:5.6.2")
-    implementation("org.assertj:assertj-core:3.16.1")
+    implementation("org.junit.jupiter:junit-jupiter:5.7.2")
+    implementation("org.assertj:assertj-core:3.20.2")
 }
 
 tasks {
