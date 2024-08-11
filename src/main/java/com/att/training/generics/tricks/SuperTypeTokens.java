@@ -8,13 +8,14 @@ import java.lang.reflect.TypeVariable;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.fail;
 
 class SuperTypeTokens {
 
     @Test
     void typeReferenceOfString_shouldReportTypeCorrectly() {
-        TypeToken<String> typeToken = new TypeToken<String>() {};
+        var typeToken = new TypeToken<String>() {};
         assertThat(typeToken.getType()).isEqualTo(String.class);
     }
 
@@ -22,14 +23,20 @@ class SuperTypeTokens {
 
     @Test
     void typeReferenceOfListOfStrings_shouldReportTypeCorrectly() {
-        TypeToken<List<String>> typeToken = new TypeToken<List<String>>() {};
+        var typeToken = new TypeToken<List<String>>() {};
         assertThat(typeToken.getType()).isEqualTo(StringList.class.getGenericInterfaces()[0]);
     }
 
     @Test
-    <T> void testVariableTypeTokenNotAllowed() {
+    @SuppressWarnings("rawtypes")
+    void testRawTypeTokenNotAllowed() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new TypeToken() {});
+    }
+
+    @Test
+    <T> void testVariableTypeTokenNotAllowed2() {
         try {
-            TypeToken<T> typeToken = new TypeToken<T>() {};
+            new TypeToken<T>() {};
             fail("Should have thrown IllegalArgumentException!");
         }
         catch (IllegalArgumentException expected) {
