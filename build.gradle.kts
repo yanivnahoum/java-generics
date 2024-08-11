@@ -23,18 +23,20 @@ dependencies {
     implementation("org.assertj:assertj-core:3.16.1")
 }
 
-tasks.withType<JavaCompile> {
-    options.apply {
-        release.set(11)
-        compilerArgs = listOf("-Xlint:all")
+tasks {
+    withType<JavaCompile>().configureEach {
+        options.apply {
+            release.set(11)
+            compilerArgs = listOf("-Xlint:all")
+        }
     }
-}
 
-tasks.test {
-    useJUnitPlatform()
+    test {
+        useJUnitPlatform()
 
-    testLogging {
-        events(PASSED, SKIPPED, FAILED)
-        showStandardStreams = true
+        testLogging {
+            events(PASSED, SKIPPED, FAILED)
+            showStandardStreams = true
+        }
     }
 }
