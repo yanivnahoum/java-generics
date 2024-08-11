@@ -52,6 +52,5 @@ class Covariance {
         List<? extends Number> numbers = new ArrayList<Long>();
         numbers = new ArrayList<Integer>();
         numbers = new ArrayList<Double>();
-
     }
 }

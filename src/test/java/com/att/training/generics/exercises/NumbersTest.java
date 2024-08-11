@@ -28,7 +28,7 @@ class NumbersTest {
         assertThat(result).isEqualTo(6.9);
     }
 
-    // After fixing method Mammals.sum(), uncomment the commented lines here and make sure the test passes
+    // After fixing method Numbers.sum(), uncomment the commented lines here and make sure the test passes
     @Test
     void givenListOfIntegers_shouldReturnSum() {
         List<Integer> numbers = List.of(1, 2, 3);
