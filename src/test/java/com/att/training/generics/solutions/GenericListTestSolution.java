@@ -82,25 +82,25 @@ class GenericListTest {
     @Test
     void whenMammal_isAddedToListOfMammals_sizeIsOne() {
         mammals.add(new Mammal());
-        assertThat(mammals.size()).isEqualTo(1);
+        assertThat(mammals.size()).isOne();
     }
 
     @Test
     void whenDog_isAddedToListOfMammals_sizeIsOne() {
         mammals.add(new Dog());
-        assertThat(mammals.size()).isEqualTo(1);
+        assertThat(mammals.size()).isOne();
     }
 
     @Test
     void whenCollectionOf2Mammals_isAddedToEmptyListOfMammals_sizeIs2() {
-        List<Mammal> moreMammals = asList(new Mammal(), new Mammal());
+        List<Mammal> moreMammals = List.of(new Mammal(), new Mammal());
         mammals.addAll(moreMammals);
         assertThat(mammals.size()).isEqualTo(2);
     }
 
     @Test
     void whenCollectionOf2Dogs_isAddedToEmptyListOfMammals_sizeIs2() {
-        List<Dog> dogs = asList(new Dog(), new Dog());
+        List<Dog> dogs = List.of(new Dog(), new Dog());
         mammals.addAll(dogs);
         assertThat(mammals.size()).isEqualTo(2);
     }
@@ -108,14 +108,14 @@ class GenericListTest {
     @Test
     void whenMammal_isAddedToListOfMammals_usingSupplier_sizeIsOne() {
         mammals.add(Mammal::new);
-        assertThat(mammals.size()).isEqualTo(1);
+        assertThat(mammals.size()).isOne();
     }
 
     @Test
     void whenDog_isAddedToListOfMammals_usingSupplier_sizeIsOne() {
         Supplier<Dog> dogSupplier = Dog::new;
         mammals.add(dogSupplier);
-        assertThat(mammals.size()).isEqualTo(1);
+        assertThat(mammals.size()).isOne();
     }
 
     @Test
@@ -135,12 +135,12 @@ class GenericListTest {
 
         mammals.remove("testing");
 
-        assertThat(mammals.size()).isEqualTo(1);
+        assertThat(mammals.size()).isOne();
     }
 
     @Test
     void whenCollectionOf2Mammals_isRemovedFromListOf2Mammals_listIsEmpty() {
-        List<Mammal> moreMammals = asList(new Mammal(), new Mammal());
+        List<Mammal> moreMammals = List.of(new Mammal(), new Mammal());
         mammals.addAll(moreMammals);
 
         mammals.removeAll(moreMammals);
@@ -150,10 +150,10 @@ class GenericListTest {
 
     @Test
     void whenCollectionOfStrings_isRemovedFromListOfMammals_listRemainsUntouched() {
-        List<Mammal> moreMammals = asList(new Mammal(), new Mammal());
+        List<Mammal> moreMammals = List.of(new Mammal(), new Mammal());
         mammals.addAll(moreMammals);
 
-        List<String> strings = asList("testing", "1,2,3");
+        List<String> strings = List.of("testing", "1,2,3");
         mammals.removeAll(strings);
 
         assertThat(mammals.size()).isEqualTo(2);
@@ -161,7 +161,7 @@ class GenericListTest {
 
     @Test
     void whenListOfMammals_isFiltered_listContainsAtLeastSecondGenMammals() {
-        List<Mammal> moreMammals = asList(new Mammal(1), new Mammal(2), new Mammal(3));
+        List<Mammal> moreMammals = List.of(new Mammal(1), new Mammal(2), new Mammal(3));
         mammals.addAll(moreMammals);
         Predicate<Mammal> isFirstGenMammal = m -> m.getGeneration() == 1;
 
@@ -184,7 +184,7 @@ class GenericListTest {
 
     @Test
     void whenListOfMammals_isMappedToNextGeneration_listContainsYoungerMammals() {
-        List<Mammal> moreMammals = asList(new Mammal(1), new Mammal(2), new Mammal(3));
+        List<Mammal> moreMammals = List.of(new Mammal(1), new Mammal(2), new Mammal(3));
         mammals.addAll(moreMammals);
         Function<Mammal, Mammal> createMammal = this::createMammal;
 
@@ -200,14 +200,16 @@ class GenericListTest {
 
     @Test
     void whenListOfMammals_isMappedToNextGenerationOfDogs_listContainsYoungerMammals() {
-        List<Mammal> moreMammals = asList(new Mammal(1), new Mammal(2), new Mammal(3));
+        List<Mammal> moreMammals = List.of(new Mammal(1), new Mammal(2), new Mammal(3));
         mammals.addAll(moreMammals);
         Function<Animal, Dog> createDog = this::createDog;
 
         mammals.map(createDog);
 
-        assertThat(mammals.getElements()).extracting(Mammal::getGeneration)
-                                         .containsExactly(2, 3, 4);
+        assertThat(mammals.getElements())
+                .allMatch(e -> e instanceof Dog)
+                .extracting(Mammal::getGeneration)
+                .containsExactly(2, 3, 4);
     }
 
     private Dog createDog(Animal parent) {

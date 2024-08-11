@@ -63,6 +63,7 @@ class GenericMethods {
         // 2 things to note:
         // 1. The return type and the collection type are related. This is not possible with wildcards
         // 2. The generic parameter and its bounds are defined before the return type
+        // 3. More than one bound can be specified, only one of which may be a class (and it has to be first): class D <T extends A & B & C>
         static <T extends Comparable<T>> T max(Collection<T> collection) {
             Iterator<T> iterator = collection.iterator();
             T max = iterator.next();

@@ -10,8 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Arrays.asList;
-
 class Contravariance {
 
     void lowerBound() {
@@ -19,7 +17,7 @@ class Contravariance {
         // Of course generic types in java are NOT contravariant, they are invariant
         // List<Dog> dogs = new ArrayList<Mammal>();   // No way!
 
-        // Wildcards to the rescue again! This is called use-site variance (as opposed to declaration-site variance
+        // Wildcards to the rescue again! This is called use-site variance (as opposed to declaration-site variance)
         List<? super Dog> dogs = new ArrayList<Dog>();
         dogs = new ArrayList<Mammal>();
         dogs = new ArrayList<Animal>();
@@ -28,7 +26,7 @@ class Contravariance {
     }
 
     void contravarianceNeeded(Comparator<Dog> dogComparator, Comparator<Mammal> mammalComparator, Comparator<Animal> animalComparator) {
-        List<Dog> dogs = asList(new Dog(), new Dog(), new Dog());
+        List<Dog> dogs = List.of(new Dog(), new Dog(), new Dog());
         Optional<Dog> maxDog = max(dogs, dogComparator);
 //        maxDog = max(dogs, mammalComparator);
 //        maxDog = max(dogs, animalComparator);
