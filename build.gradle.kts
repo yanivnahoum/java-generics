@@ -6,7 +6,6 @@ plugins {
     java
 }
 
-
 repositories {
     mavenCentral()
 }
@@ -24,7 +23,7 @@ dependencies {
     implementation("org.assertj:assertj-core:3.16.1")
 }
 
-tasks.compileJava {
+tasks.withType<JavaCompile> {
     options.apply {
         release.set(11)
         compilerArgs = listOf("-Xlint:all")
