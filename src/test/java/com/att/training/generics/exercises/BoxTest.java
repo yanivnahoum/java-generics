@@ -24,7 +24,7 @@ class BoxTest {
      */
     @Test
     void genericBoxOfInteger_shouldReturnInteger() {
-        Box integerBox = new Box();
+        var integerBox = new Box();
         int number = 67;
         integerBox.setObject(number);
         Integer object = (Integer) integerBox.getObject();
@@ -36,7 +36,7 @@ class BoxTest {
      */
     @Test
     void genericBoxOfString_shouldReturnString() {
-        Box stringBox = new Box();
+        var stringBox = new Box();
         String name = "John";
         stringBox.setObject(name);
         String object = (String) stringBox.getObject();

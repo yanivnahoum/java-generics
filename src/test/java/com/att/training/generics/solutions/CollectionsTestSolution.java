@@ -26,15 +26,15 @@ class CollectionsTest {
 
     @Test
     void givenListOfStrings_withNull_shouldReturnTrue() {
-        List<String> strings = new ArrayList<>(asList("Hello", "World", null, "!"));
+        var strings = new ArrayList<>(asList("Hello", "World", null, "!"));
         boolean result = containsNull(strings);
         assertThat(result).isTrue();
     }
 
     @Test
     void givenListOfLongs_withoutNull_shouldReturnFalse() {
-        List<Long> strings = List.of(12L, 3L, 456L);
-        boolean result = containsNull(strings);
+        var longs = List.of(12L, 3L, 456L);
+        boolean result = containsNull(longs);
         assertThat(result).isFalse();
     }
 }
