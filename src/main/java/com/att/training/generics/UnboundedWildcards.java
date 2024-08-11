@@ -3,7 +3,6 @@ package com.att.training.generics;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -47,14 +46,14 @@ class UnboundedWildcards {
 
         @Test
         void givenListOfStrings_toStringRaw_concatenatesElements() {
-            Collection<String> strings = Arrays.asList("Hello", "World", "Generics", "!");
+            Collection<String> strings = List.of("Hello", "World", "Generics", "!");
             String result = toStringRaw(strings);
             assertThat(result).isEqualTo("HelloWorldGenerics!");
         }
 
         @Test
         void givenListOfLongs_toStringRaw_concatenatesElements() {
-            Collection<Long> strings = Arrays.asList(12L, 3L, 456L);
+            Collection<Long> strings = List.of(12L, 3L, 456L);
             String result = toStringRaw(strings);
             assertThat(result).isEqualTo("123456");
         }
@@ -70,13 +69,13 @@ class UnboundedWildcards {
 
         @Test
         void callToString1WithListOfObjects() {
-            Collection<Object> objects = Arrays.asList(new Object(), new Object());
+            Collection<Object> objects = List.of(new Object(), new Object());
             String result = toString1(objects);
         }
 
         @Test
         void callToString1WithListOfStrings() {
-            Collection<String> strings = Arrays.asList("Hello", "World", "Generics", "!");
+            Collection<String> strings = List.of("Hello", "World", "Generics", "!");
             // No good - this doesn't compile :-(
             //toString1(strings);
         }
@@ -93,14 +92,14 @@ class UnboundedWildcards {
 
         @Test
         void givenListOfStrings_toString_concatenatesElements() {
-            Collection<String> strings = Arrays.asList("Hello", "World", "Generics", "!");
+            Collection<String> strings = List.of("Hello", "World", "Generics", "!");
             String result = toString(strings);
             assertThat(result).isEqualTo("HelloWorldGenerics!");
         }
 
         @Test
         void givenListOfLongs_toString_concatenatesElements() {
-            Collection<Long> longs = Arrays.asList(12L, 3L, 456L);
+            Collection<Long> longs = List.of(12L, 3L, 456L);
             String result = toString(longs);
             assertThat(result).isEqualTo("123456");
         }
@@ -119,7 +118,7 @@ class UnboundedWildcards {
 
         @Test
         void misbehavingToStringRaw_shouldModifyCollection() {
-            List<Long> longs = new ArrayList<>(Arrays.asList(12L, 3L, 456L));
+            List<Long> longs = new ArrayList<>(List.of(12L, 3L, 456L));
             misbehavingToStringRaw(longs);
             assertThatExceptionOfType(ClassCastException.class)
                     .isThrownBy(() -> { Long value = longs.get(3); });

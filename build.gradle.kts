@@ -21,8 +21,8 @@ sourceSets {
 
 
 dependencies {
-    implementation("org.junit.jupiter:junit-jupiter:5.5.2")
-    implementation("org.assertj:assertj-core:3.14.0")
+    implementation("org.junit.jupiter:junit-jupiter:5.6.2")
+    implementation("org.assertj:assertj-core:3.16.1")
 }
 
 tasks.withType<JavaCompile> {
@@ -33,7 +33,7 @@ tasks.test {
     useJUnitPlatform()
 
     testLogging {
-        events("passed", "skipped", "failed")
+        events("skipped", "failed")
         showStandardStreams = true
     }
 }

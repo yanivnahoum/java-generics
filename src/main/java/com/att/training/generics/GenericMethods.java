@@ -2,9 +2,9 @@ package com.att.training.generics;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,22 +22,22 @@ class GenericMethods {
 
         @Test
         void givenListOfStrings_toString_concatenatesElements() {
-            Collection<String> strings = Arrays.asList("Hello", "World", "Generics", "!");
+            Collection<String> strings = List.of("Hello", "World", "Generics", "!");
             String result = Collections.toString(strings);
             assertThat(result).isEqualTo("HelloWorldGenerics!");
         }
 
         @Test
         void givenListOfLongs_toString_concatenatesElements() {
-            Collection<Long> longs = Arrays.asList(12L, 3L, 456L);
+            Collection<Long> longs = List.of(12L, 3L, 456L);
             String result = Collections.toString(longs);
             assertThat(result).isEqualTo("123456");
         }
 
         @Test
         void compilerInference() {
-            Collection<Integer> integers = Arrays.asList(1, 2, 3, 4);
-            Collection<String> strings = Arrays.asList("Hello", "World", "Generics", "!");
+            Collection<Integer> integers = List.of(1, 2, 3, 4);
+            Collection<String> strings = List.of("Hello", "World", "Generics", "!");
 
             Collections.<Integer>toString(integers);
             Collections.<String>toString(strings);
@@ -79,14 +79,14 @@ class GenericMethods {
 
         @Test
         void maxShouldReturnMaximalInteger() {
-            Collection<Integer> integers = Arrays.asList(1, 4, 3, 2);
+            Collection<Integer> integers = List.of(1, 4, 3, 2);
             Integer maxInt = Collections.max(integers);
             assertThat(maxInt).isEqualTo(4);
         }
 
         @Test
         void maxShouldReturnMaximalString() {
-            Collection<String> strings = Arrays.asList("Alice", "Bob", "Carl");
+            Collection<String> strings = List.of("Alice", "Bob", "Carl");
             String maxString = Collections.max(strings);
             assertThat(maxString).isEqualTo("Carl");
         }

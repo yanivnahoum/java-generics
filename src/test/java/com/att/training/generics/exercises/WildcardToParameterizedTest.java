@@ -2,10 +2,10 @@ package com.att.training.generics.exercises;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WildcardToParameterizedTest {
@@ -31,8 +31,8 @@ class WildcardToParameterizedTest {
 
     @Test
     void whenCopyingIntegersIntoNumbers_listsShouldBeIdentical() {
-        List<Integer> integers = Arrays.asList(1, 2, 3);
-        List<Number> numbers = Arrays.asList(5L, 6L, 7L);
+        List<Integer> integers = asList(1, 2, 3);
+        List<Number> numbers = asList(5L, 6L, 7L);
 
         copy(integers, numbers);
 
@@ -41,8 +41,8 @@ class WildcardToParameterizedTest {
 
     @Test
     void whenCopyingStringsIntoObjects_listsShouldBeIdentical() {
-        List<String> numbers = Arrays.asList("one", "two", "three");
-        List<Object> objects = Arrays.asList(new Object(), new Object(), new Object());
+        List<String> numbers = asList("one", "two", "three");
+        List<Object> objects = asList(new Object(), new Object(), new Object());
 
         copy(numbers, objects);
 
