@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -168,6 +169,32 @@ class GenericListTest {
 //        mammals.removeAll(strings);
 
 //        assertThat(mammals.size()).isEqualTo(2);
+    }
+
+    @Test
+    void whenListOfMammals_isFiltered_listContainsAtLeastSecondGenMammals() {
+        List<Mammal> moreMammals = asList(new Mammal(1), new Mammal(2), new Mammal(3));
+        mammals.addAll(moreMammals);
+        Predicate<Mammal> isFirstGenMammal = m -> m.getGeneration() == 1;
+
+        mammals.removeIf(isFirstGenMammal);
+
+        assertThat(mammals.getElements()).extracting(Mammal::getGeneration)
+                                         .containsExactly(2, 3);
+    }
+
+    /**
+     * Allow method removeIf of {@link GenericList} to accept a {@link Predicate} of a  super-type of {@link Mammal}
+     */
+    @Test
+    void whenListOfMammals_isFiltered_listContainsNonNullMammals() {
+        List<Mammal> moreMammals = asList(new Mammal(), null, new Mammal());
+        mammals.addAll(moreMammals);
+        Predicate<Object> isNull = Objects::isNull;
+
+        //mammals.removeIf(isNull);
+
+        //assertThat(mammals.getElements()).allMatch(Objects::nonNull);
     }
 
     @Test
