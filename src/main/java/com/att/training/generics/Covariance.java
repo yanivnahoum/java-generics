@@ -38,11 +38,12 @@ class Covariance {
         Animal animal = new Mammal();
 
         // But this doesn't work:
-        // List<Animal> animals = new ArrayList<Mammal>();
+        List<Mammal> mammals = new ArrayList<>();
+        // List<Animal> animals = mammals;
 
         // If it did, we could do this:
         // animals.add(new Animal());
-        // Mammal mammal = animals.get(0);   --> ClassCastException!!
+        // Mammal mammal = mammals.get(0);   --> ClassCastException!!
     }
 
     void upperBound() {

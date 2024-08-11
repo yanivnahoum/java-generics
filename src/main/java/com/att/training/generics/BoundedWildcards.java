@@ -43,7 +43,7 @@ class BoundedWildcards {
 
         String s = box.toString();
 
-        Animal animal = box.take();
+        Mammal mammal = box.take();
 
         Box<Mammal> copy = box.copy();
         boolean equal = box.equalTo(copy);
@@ -92,7 +92,7 @@ class BoundedWildcards {
 //        equal = box.equalTo(box); // still an error!
     }
 
-    static void unbounded(Box<?> box) {
+    static void unbounded(Box<? extends Object> box) {
         //box.put("xyz"); // error
         box.put(null); // ok
 
