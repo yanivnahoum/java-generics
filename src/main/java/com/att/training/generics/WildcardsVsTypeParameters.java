@@ -60,17 +60,16 @@ class WildcardsVsTypeParameters {
     // static <T, U super T> void addToList(List<U> list, T obj) {
 
     // We need to make sure that T can be assigned to U....
-
-    static <T, U extends T> void addToList2(List<T> list, U obj) {
-        // T is the most derived type possible here, so it can definitely be added to the list
+    static <T, U extends T> void addToListWithNoWildcards(List<T> list, U obj) {
+        // U extends T, so it can definitely be added to the list
         list.add(obj);
     }
 
     @Test
     void testAddToList2() {
         List<Number> list = new ArrayList<>();
-        addToList2(list, 15.75);
-        addToList2(list, 2L);
+        addToListWithNoWildcards(list, 15.75);
+        addToListWithNoWildcards(list, 2L);
 
         assertThat(list).containsExactly(15.75, 2L);
     }

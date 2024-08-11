@@ -29,8 +29,8 @@ class GenericMethods {
 
         @Test
         void givenListOfLongs_toString_concatenatesElements() {
-            Collection<Long> strings = Arrays.asList(12L, 3L, 456L);
-            String result = Collections.toString(strings);
+            Collection<Long> longs = Arrays.asList(12L, 3L, 456L);
+            String result = Collections.toString(longs);
             assertThat(result).isEqualTo("123456");
         }
 
