@@ -8,7 +8,7 @@ import java.util.ListIterator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WildcardToParameterizedTestSolution {
+class WildcardToParameterizedTest {
 
     static <U, T extends U> void copy(List<T> source, List<U> destination) {
         validateSizes(source, destination);

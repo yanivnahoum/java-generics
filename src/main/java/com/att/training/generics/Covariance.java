@@ -37,19 +37,20 @@ class Covariance {
         // Animal -> Mammal, and therefore:
         Animal animal = new Mammal();
 
-        List<Mammal> mammals = new ArrayList<>();
         // But this doesn't work:
-        // List<Animal> animals = mammals;
+        // List<Animal> animals = new ArrayList<Mammal>();
 
         // If it did, we could do this:
         // animals.add(new Animal());
-        // ClassCastException!!
-        Mammal mammal = mammals.get(0);
+        // Mammal mammal = animals.get(0);   --> ClassCastException!!
     }
 
     void upperBound() {
-        List<? extends Number> list = new ArrayList<Long>();
-        list = new ArrayList<Integer>();
-        list = new ArrayList<Double>();
+        // ? extends X denotes the family of types that are derived from X (including X itself)
+        // During compilation, the wildcard type parameter is erased and replaced with the upper bound (Number)
+        List<? extends Number> numbers = new ArrayList<Long>();
+        numbers = new ArrayList<Integer>();
+        numbers = new ArrayList<Double>();
+
     }
 }

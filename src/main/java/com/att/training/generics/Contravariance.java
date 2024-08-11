@@ -5,27 +5,26 @@ import com.att.training.generics.api.Dog;
 import com.att.training.generics.api.Mammal;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 import static java.util.Arrays.asList;
 
 class Contravariance {
 
     void lowerBound() {
-        // Object -> Animal -> Mammal -> Dog
+        //Contravariance: if [Object -> Animal -> Mammal -> Dog] then [A<Object> <- A<Animal> <- A<Mammal> <- A<Dog>]
+        // Of course generic types in java are NOT contravariant, they are invariant
+        // List<Dog> dogs = new ArrayList<Mammal>();   // No way!
+
+        // Wildcards to the rescue again! This is called use-site variance (as opposed to declaration-site variance
         List<? super Dog> dogs = new ArrayList<Dog>();
         dogs = new ArrayList<Mammal>();
         dogs = new ArrayList<Animal>();
         dogs = new ArrayList<Object>();
+        // ? super X denotes the family of types that are super types of X (including X itself)
     }
 
     void contravarianceNeeded(Comparator<Dog> dogComparator, Comparator<Mammal> mammalComparator, Comparator<Animal> animalComparator) {
@@ -55,8 +54,4 @@ class Contravariance {
 
         return Optional.of(max);
     }
-}
-
-class FunctionalInterfaces {
-
 }

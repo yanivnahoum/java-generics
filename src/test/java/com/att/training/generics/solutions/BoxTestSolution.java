@@ -4,8 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BoxTestSolution {
+class BoxTest {
 
+    // T (as in type) is probably the most used type parameter. Others are U, V. In maps - K & V
     class Box<T> {
 
         private T object;
@@ -19,9 +20,6 @@ class BoxTestSolution {
         }
     }
 
-    /**
-     * Edit test after generifying class {@link Box}.
-     */
     @Test
     void genericBoxOfInteger_shouldReturnInteger() {
         Box<Integer> integerBox = new Box<>();
@@ -33,9 +31,6 @@ class BoxTestSolution {
         assertThat(object).isEqualTo(number);
     }
 
-    /**
-     * Edit test after generifying class {@link Box}.
-     */
     @Test
     void genericBoxOfString_shouldReturnString() {
         Box<String> stringBox = new Box<>();

@@ -24,11 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class GenericList<E> {
 
-    private final List<E> elements;
-
-    GenericList() {
-        this.elements = new LinkedList<>();
-    }
+    private final List<E> elements = new LinkedList<>();
 
     void add(E element) {
         elements.add(element);

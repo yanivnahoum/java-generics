@@ -16,6 +16,7 @@ class WildcardsVsTypeParameters {
         }
 
         // We can declare the method as a generic method with type parameters, that is, without using wildcards.
+        // Which one is better?
         private <T> void reverse2(List<T> list) {
             // ...
         }

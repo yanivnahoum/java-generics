@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class WildcardToParameterizedTest {
 
     /**
-     * Covert this method from its current wildcard version to a parameterized version with no wildcards at all
+     * Convert this method from its current wildcard version to a parameterized version with no wildcards at all
      */
     static <T> void copy(List<? extends T> source, List<? super T> destination) {
         validateSizes(source, destination);

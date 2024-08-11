@@ -4,7 +4,7 @@ import com.att.training.generics.api.Animal;
 import com.att.training.generics.api.Dog;
 import com.att.training.generics.api.Mammal;
 
-public class BoundedWildcards {
+class BoundedWildcards {
 
     static class Box<T> {
 
@@ -36,23 +36,23 @@ public class BoundedWildcards {
         }
     }
 
-    static void concreteGenericType(Box<Animal> box) {
+    static void concreteGenericType(Box<Mammal> box) {
         box.put(new Dog());
         box.put(new Mammal());
-        box.put(new Animal());
         box.put(null);
 
         String s = box.toString();
 
         Animal animal = box.take();
 
-        Box<Animal> copy = box.copy();
+        Box<Mammal> copy = box.copy();
         boolean equal = box.equalTo(copy);
         equal = box.equalTo(box);
     }
 
+    // Upper bounds are "sort of" read-only
     static void upperBound(Box<? extends Animal> box) {
-        // box.put(new Dog()); // error
+        // box.put(new Dog()); // error, there's no lower bound to this hierarchy....
         // box.put(new Mammal()); // error
         // box.put(new Animal()); // error
         box.put(null); // ok
@@ -69,6 +69,7 @@ public class BoundedWildcards {
         // equal = box.equalTo(box); // still an error!
     }
 
+    // Lower bounds are "sort of" write-only
     static void lowerBound(Box<? super Mammal> box) {
         // Methods that take an argument of the "unknown" type can be invoked with either null
         // or an argument whose type is the lower bound or a subtype thereof.

@@ -13,7 +13,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class Wildcards {
+class UnboundedWildcards {
 
     // An reference to a generic type where at least one type argument is a wildcard (as opposed to a concrete type).
     // A wildcard parameterized type denotes a family of types comprising concrete instantiations of a generic type.
@@ -70,7 +70,7 @@ public class Wildcards {
 
         @Test
         void callToString1WithListOfObjects() {
-            Collection<Object> objects = Arrays.asList("Hello", "World", "Generics", "!");
+            Collection<Object> objects = Arrays.asList(new Object(), new Object());
             String result = toString1(objects);
         }
 
@@ -129,7 +129,7 @@ public class Wildcards {
             for (Object o : collection) {
                 builder.append(o);
             }
-            // collection.add("Oops!"); // Doesn't compile!
+            // collection.add("Oops!"); // Doesn't compile! I can still add null, but at least that won't generate a runtime exception
             return builder.toString();
         }
     }

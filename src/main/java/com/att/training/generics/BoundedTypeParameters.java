@@ -31,7 +31,7 @@ class BoundedTypeParameters {
 
     @Test
     void isEvenShouldReturnTrue_givenNumberBoxWithEvenNumber() {
-        NumberBox<Number> numberBox = new NumberBox<>();
+        NumberBox<Integer> numberBox = new NumberBox<>();
         numberBox.setObject(40);
 
         boolean result = numberBox.isEven();
@@ -41,7 +41,7 @@ class BoundedTypeParameters {
 
     @Test
     void isEvenShouldReturnFalse_givenNumberBoxWithEvenNumber() {
-        NumberBox<Number> numberBox = new NumberBox<>();
+        NumberBox<Integer> numberBox = new NumberBox<>();
         numberBox.setObject(41);
 
         boolean result = numberBox.isEven();

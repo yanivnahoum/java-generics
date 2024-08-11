@@ -1,4 +1,4 @@
-package com.att.training.generics;
+package com.att.training.generics.tricks;
 
 import java.util.List;
 import java.util.ListIterator;

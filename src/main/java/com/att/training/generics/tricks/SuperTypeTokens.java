@@ -33,6 +33,7 @@ class SuperTypeTokens {
             fail("Should have thrown IllegalArgumentException!");
         }
         catch (IllegalArgumentException expected) {
+            // Test passed!
         }
     }
 }
