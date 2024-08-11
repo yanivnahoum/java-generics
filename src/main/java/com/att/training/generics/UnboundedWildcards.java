@@ -105,6 +105,7 @@ class UnboundedWildcards {
             assertThat(result).isEqualTo("123456");
         }
 
+        @SuppressWarnings("unchecked")
         // So if I'm getting the same result, why shouldn't I use raw classes?
         static String misbehavingToStringRaw(Collection collection) {
             StringBuilder builder = new StringBuilder();

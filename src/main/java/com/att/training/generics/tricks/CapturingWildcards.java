@@ -8,8 +8,8 @@ class CapturingWildcards {
     void foo(List<? extends String> names) {
         ListIterator<? extends String> listIterator = names.listIterator();
         while (listIterator.hasNext()) {
-            // The following won't compile: ListIterator.set(capture<? extends java.lang.String>) cannot be applied to (capture<? extends java.lang.String>) 
-            //listIterator.set(listIterator.next())
+            // The following won't compile: ListIterator.set(capture<? extends java.lang.String>) cannot be applied to (capture<? extends java.lang.String>)
+            // listIterator.set(listIterator.next())
             fooHelper(listIterator);
         }
     }
