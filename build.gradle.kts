@@ -1,11 +1,11 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+
 plugins {
     java
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
 
 repositories {
     mavenCentral()
@@ -19,21 +19,23 @@ sourceSets {
     }
 }
 
-
 dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.6.2")
     implementation("org.assertj:assertj-core:3.16.1")
 }
 
-tasks.withType<JavaCompile> {
-    options.compilerArgs = listOf("-Xlint:all")
+tasks.compileJava {
+    options.apply {
+        release.set(11)
+        compilerArgs = listOf("-Xlint:all")
+    }
 }
 
 tasks.test {
     useJUnitPlatform()
 
     testLogging {
-        events("skipped", "failed")
+        events(PASSED, SKIPPED, FAILED)
         showStandardStreams = true
     }
 }
